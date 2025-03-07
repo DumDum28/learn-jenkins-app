@@ -1,0 +1,354 @@
+Started by user nattawut
+Obtained Jenkinsfile from git https://github.com/DumDum28/learn-jenkins-app.git
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in /var/jenkins_home/workspace/learn-jenkins-app
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+Selected Git installation does not exist. Using Default
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --resolve-git-dir /var/jenkins_home/workspace/learn-jenkins-app/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/DumDum28/learn-jenkins-app.git # timeout=10
+Fetching upstream changes from https://github.com/DumDum28/learn-jenkins-app.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.39.5'
+ > git fetch --tags --force --progress -- https://github.com/DumDum28/learn-jenkins-app.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/main^{commit} # timeout=10
+Checking out Revision 13c9aeda1d21a0ccf3cc7d0150cdd7f3711064f1 (refs/remotes/origin/main)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 13c9aeda1d21a0ccf3cc7d0150cdd7f3711064f1 # timeout=10
+Commit message: "Add deploy stage"
+ > git rev-list --no-walk 97a2f604341c00aeb5dde5bc959e984d3e07f777 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] withCredentials
+Masking supported pattern matches of $NETLIFY_AUTH_TOKEN
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Build)
+[Pipeline] getContext
+[Pipeline] isUnix
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] sh
++ docker inspect -f . node:18-alpine
+.
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] withDockerContainer
+Jenkins seems to be running inside container 7778b914dca2d30c5b3fbb4bc3b74a3a001ec5e4619783a0f5503d07a95cc8a5
+but /var/jenkins_home/workspace/learn-jenkins-app could not be found among []
+but /var/jenkins_home/workspace/learn-jenkins-app@tmp could not be found among []
+$ docker run -t -d -u 1000:1000 -w /var/jenkins_home/workspace/learn-jenkins-app -v /var/jenkins_home/workspace/learn-jenkins-app:/var/jenkins_home/workspace/learn-jenkins-app:rw,z -v /var/jenkins_home/workspace/learn-jenkins-app@tmp:/var/jenkins_home/workspace/learn-jenkins-app@tmp:rw,z -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** node:18-alpine cat
+$ docker top 792bb9f1b9779138a4a90052879a6919edf45b42f80d1feadf6af1305efee00b -eo pid,comm
+[Pipeline] {
+[Pipeline] sh
++ ls -la
+total 784
+drwxr-xr-x   12 node     node          4096 Mar  7 11:36 .
+drwxr-xr-x    4 root     root          4096 Mar  7 11:36 ..
+drwxr-xr-x    2 node     node          4096 Mar  7 07:27 .devcontainer
+drwxr-xr-x    8 node     node          4096 Mar  7 11:36 .git
+drwxr-xr-x    2 node     node          4096 Mar  7 07:27 .github
+-rw-r--r--    1 node     node           365 Mar  7 07:27 .gitignore
+-rw-r--r--    1 node     node          1660 Mar  7 11:36 Jenkinsfile
+-rw-r--r--    1 node     node          3339 Mar  7 07:27 README.md
+drwxr-xr-x    3 node     node          4096 Mar  7 11:32 build
+drwxr-xr-x    2 node     node          4096 Mar  7 07:27 e2e
+drwxr-xr-x  858 node     node         32768 Mar  7 11:33 node_modules
+-rw-r--r--    1 node     node        702310 Mar  7 11:36 package-lock.json
+-rw-r--r--    1 node     node          1296 Mar  7 11:36 package.json
+-rw-r--r--    1 node     node          2001 Mar  7 07:27 playwright.config.js
+drwxr-xr-x    2 node     node          4096 Mar  7 07:27 public
+drwxr-xr-x    2 node     node          4096 Mar  7 07:27 src
+drwxr-xr-x    2 node     node          4096 Mar  7 08:01 test-results
+drwxr-xr-x    2 node     node          4096 Mar  7 07:27 tests-examples
++ node --version
+v18.20.7
++ npm --version
+10.8.2
++ npm ci
+npm warn deprecated w3c-hr-time@1.0.2: Use your platform's native performance.now() and performance.timeOrigin.
+npm warn deprecated workbox-cacheable-response@6.6.0: workbox-background-sync@6.6.0
+npm warn deprecated svgo@1.3.2: This SVGO version is no longer supported. Upgrade to v2.x.x.
+npm warn deprecated stable@0.1.8: Modern JS already guarantees Array#sort() is a stable sort, so this library is deprecated. See the compatibility table on MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#browser_compatibility
+npm warn deprecated sourcemap-codec@1.4.8: Please use @jridgewell/sourcemap-codec instead
+npm warn deprecated rollup-plugin-terser@7.0.2: This package has been deprecated and is no longer maintained. Please use @rollup/plugin-terser
+npm warn deprecated @babel/plugin-proposal-nullish-coalescing-operator@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-nullish-coalescing-operator instead.
+npm warn deprecated @babel/plugin-proposal-class-properties@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-class-properties instead.
+npm warn deprecated @babel/plugin-proposal-private-methods@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-private-methods instead.
+npm warn deprecated @babel/plugin-proposal-optional-chaining@7.21.0: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-optional-chaining instead.
+npm warn deprecated @babel/plugin-proposal-numeric-separator@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-numeric-separator instead.
+
+added 1533 packages, and audited 1534 packages in 49s
+
+246 packages are looking for funding
+  run `npm fund` for details
+
+30 vulnerabilities (3 low, 12 moderate, 15 high)
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
++ npm run build
+
+> learn-jenkins-app@0.1.0 build
+> react-scripts build
+
+Creating an optimized production build...
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+[0;33mOne of your dependencies, babel-preset-react-app, is importing the
+"@babel/plugin-proposal-private-property-in-object" package without
+declaring it in its dependencies. This is currently working because
+"@babel/plugin-proposal-private-property-in-object" is already in your
+node_modules folder for unrelated reasons, but it [1mmay break at any time[0;33m.
+
+babel-preset-react-app is part of the create-react-app project, [1mwhich
+is not maintianed anymore[0;33m. It is thus unlikely that this bug will
+ever be fixed. Add "@babel/plugin-proposal-private-property-in-object" to
+your devDependencies to work around this error. This will make this message
+go away.[0m
+  
+Browserslist: caniuse-lite is outdated. Please run:
+  npx update-browserslist-db@latest
+  Why you should do it regularly: https://github.com/browserslist/update-db#readme
+Compiled successfully.
+
+File sizes after gzip:
+
+  46.63 kB  build/static/js/main.c64ec5d3.js
+  1.78 kB   build/static/js/787.a1dc0f1b.chunk.js
+  538 B     build/static/css/main.fd921077.css
+
+The project was built assuming it is hosted at /.
+You can control this with the homepage field in your package.json.
+
+The build folder is ready to be deployed.
+You may serve it with a static server:
+
+  npm install -g serve
+  serve -s build
+
+Find out more about deployment here:
+
+  https://cra.link/deployment
+
++ ls -la
+total 784
+drwxr-xr-x   12 node     node          4096 Mar  7 11:36 .
+drwxr-xr-x    4 root     root          4096 Mar  7 11:36 ..
+drwxr-xr-x    2 node     node          4096 Mar  7 07:27 .devcontainer
+drwxr-xr-x    8 node     node          4096 Mar  7 11:36 .git
+drwxr-xr-x    2 node     node          4096 Mar  7 07:27 .github
+-rw-r--r--    1 node     node           365 Mar  7 07:27 .gitignore
+-rw-r--r--    1 node     node          1660 Mar  7 11:36 Jenkinsfile
+-rw-r--r--    1 node     node          3339 Mar  7 07:27 README.md
+drwxr-xr-x    3 node     node          4096 Mar  7 11:37 build
+drwxr-xr-x    2 node     node          4096 Mar  7 07:27 e2e
+drwxr-xr-x  857 node     node         32768 Mar  7 11:36 node_modules
+-rw-r--r--    1 node     node        702310 Mar  7 11:36 package-lock.json
+-rw-r--r--    1 node     node          1296 Mar  7 11:36 package.json
+-rw-r--r--    1 node     node          2001 Mar  7 07:27 playwright.config.js
+drwxr-xr-x    2 node     node          4096 Mar  7 07:27 public
+drwxr-xr-x    2 node     node          4096 Mar  7 07:27 src
+drwxr-xr-x    2 node     node          4096 Mar  7 08:01 test-results
+drwxr-xr-x    2 node     node          4096 Mar  7 07:27 tests-examples
+[Pipeline] }
+$ docker stop --time=1 792bb9f1b9779138a4a90052879a6919edf45b42f80d1feadf6af1305efee00b
+$ docker rm -f --volumes 792bb9f1b9779138a4a90052879a6919edf45b42f80d1feadf6af1305efee00b
+[Pipeline] // withDockerContainer
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (test)
+[Pipeline] getContext
+[Pipeline] isUnix
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] sh
++ docker inspect -f . node:18-alpine
+.
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] withDockerContainer
+Jenkins seems to be running inside container 7778b914dca2d30c5b3fbb4bc3b74a3a001ec5e4619783a0f5503d07a95cc8a5
+but /var/jenkins_home/workspace/learn-jenkins-app could not be found among []
+but /var/jenkins_home/workspace/learn-jenkins-app@tmp could not be found among []
+$ docker run -t -d -u 1000:1000 -w /var/jenkins_home/workspace/learn-jenkins-app -v /var/jenkins_home/workspace/learn-jenkins-app:/var/jenkins_home/workspace/learn-jenkins-app:rw,z -v /var/jenkins_home/workspace/learn-jenkins-app@tmp:/var/jenkins_home/workspace/learn-jenkins-app@tmp:rw,z -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** node:18-alpine cat
+$ docker top a8f6f7fb9cbd12ce871a4f62ee468b31edd90674ac10e84b09a06f4257ba671c -eo pid,comm
+[Pipeline] {
+[Pipeline] sh
++ test -f build/index.html
++ npm test
+
+> learn-jenkins-app@0.1.0 test
+> react-scripts test --testResultsProcessor="jest-junit"
+
+PASS src/App.test.js
+  ✓ renders learn Jenkins link (27 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        1.131 s
+Ran all test suites.
+Jest did not exit one second after the test run has completed.
+
+This usually means that there are asynchronous operations that weren't stopped in your tests. Consider running Jest with `--detectOpenHandles` to troubleshoot this issue.
+[0;33mOne of your dependencies, babel-preset-react-app, is importing the
+"@babel/plugin-proposal-private-property-in-object" package without
+declaring it in its dependencies. This is currently working because
+"@babel/plugin-proposal-private-property-in-object" is already in your
+node_modules folder for unrelated reasons, but it [1mmay break at any time[0;33m.
+
+babel-preset-react-app is part of the create-react-app project, [1mwhich
+is not maintianed anymore[0;33m. It is thus unlikely that this bug will
+ever be fixed. Add "@babel/plugin-proposal-private-property-in-object" to
+your devDependencies to work around this error. This will make this message
+go away.[0m
+  
+[Pipeline] }
+$ docker stop --time=1 a8f6f7fb9cbd12ce871a4f62ee468b31edd90674ac10e84b09a06f4257ba671c
+$ docker rm -f --volumes a8f6f7fb9cbd12ce871a4f62ee468b31edd90674ac10e84b09a06f4257ba671c
+[Pipeline] // withDockerContainer
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Deploy)
+[Pipeline] getContext
+[Pipeline] isUnix
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] sh
++ docker inspect -f . node:18-alpine
+.
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] withDockerContainer
+Jenkins seems to be running inside container 7778b914dca2d30c5b3fbb4bc3b74a3a001ec5e4619783a0f5503d07a95cc8a5
+but /var/jenkins_home/workspace/learn-jenkins-app could not be found among []
+but /var/jenkins_home/workspace/learn-jenkins-app@tmp could not be found among []
+$ docker run -t -d -u 1000:1000 -w /var/jenkins_home/workspace/learn-jenkins-app -v /var/jenkins_home/workspace/learn-jenkins-app:/var/jenkins_home/workspace/learn-jenkins-app:rw,z -v /var/jenkins_home/workspace/learn-jenkins-app@tmp:/var/jenkins_home/workspace/learn-jenkins-app@tmp:rw,z -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** -e ******** node:18-alpine cat
+$ docker top e8695880b52df2a7889ebe1dd5ded744d8fac4e1a58fb1372c3e36d12000089d -eo pid,comm
+[Pipeline] {
+[Pipeline] sh
++ npm install netlify-cli
+npm warn deprecated glob@8.1.0: Glob versions prior to v9 are no longer supported
+
+added 1187 packages, and audited 2724 packages in 45s
+
+467 packages are looking for funding
+  run `npm fund` for details
+
+36 vulnerabilities (3 low, 18 moderate, 15 high)
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
++ node_modules/.bin/netlify --version
+netlify-cli/19.0.2 linux-x64 node-v18.20.7
++ echo 'Deploy to production. Site ID: dedb7878-3464-428e-86c0-88297462d59b'
+Deploy to production. Site ID: dedb7878-3464-428e-86c0-88297462d59b
++ node_modules/.bin/netlify status
+──────────────────────┐
+ Current Netlify User │
+──────────────────────┘
+Name:  Nattawut Tepkam
+Email: nattawut.tepkam28@gmail.com
+Teams: 
+  nattawut-tepkam28’s team: Owner Reviewer
+────────────────────┐
+ Netlify Site Info  │
+────────────────────┘
+Current site: storied-beijinho-5c511b
+Admin URL:    https://app.netlify.com/sites/storied-beijinho-5c511b
+Site URL:     https://storied-beijinho-5c511b.netlify.app
+Site Id:      dedb7878-3464-428e-86c0-88297462d59b
+
++ node_modules/.bin/netlify deploy '--dir=build' --prod
+Deploy path: /var/jenkins_home/workspace/learn-jenkins-app/build
+Deploying to main site URL...
+- Uploading blobs to deploy store...
+
+​
+Netlify Build                                                 
+────────────────────────────────────────────────────────────────
+​
+❯ Version
+  @netlify/build 29.59.2
+​
+❯ Flags
+  deployId: 67cadaabf36b049a6acc202f
+  dir: build
+  open: false
+  prod: true
+  prodIfUnlocked: false
+  site: dedb7878-3464-428e-86c0-88297462d59b
+  skipFunctionsCache: false
+​
+❯ Current directory
+  /var/jenkins_home/workspace/learn-jenkins-app
+​
+❯ Config file
+  No config file was defined: using default values.
+​
+❯ Context
+  dev
+✔ Finished uploading blobs to deploy store
+- Hashing files...
+- Looking for a functions cache...
+✔ No cached functions were found
+✔ Finished hashing 
+- CDN diffing files...
+✔ CDN requesting 0 files
+- Uploading 0 files
+✔ Finished uploading 0 assets
+- Waiting for deploy to go live...
+✔ Deploy is live!
+
+Build logs:         https://app.netlify.com/sites/storied-beijinho-5c511b/deploys/67cadaabf36b049a6acc202f
+Function logs:      https://app.netlify.com/sites/storied-beijinho-5c511b/logs/functions
+Edge function Logs: https://app.netlify.com/sites/storied-beijinho-5c511b/logs/edge-functions
+Unique deploy URL:  https://67cadaabf36b049a6acc202f--storied-beijinho-5c511b.netlify.app
+Website URL:        https://storied-beijinho-5c511b.netlify.app
+[Pipeline] }
+$ docker stop --time=1 e8695880b52df2a7889ebe1dd5ded744d8fac4e1a58fb1372c3e36d12000089d
+$ docker rm -f --volumes e8695880b52df2a7889ebe1dd5ded744d8fac4e1a58fb1372c3e36d12000089d
+[Pipeline] // withDockerContainer
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Declarative: Post Actions)
+[Pipeline] junit
+Recording test results
+[Checks API] No suitable checks publisher found.
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS

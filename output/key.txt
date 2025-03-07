@@ -1,0 +1,2 @@
+Netlify site id: 'dedb7878-3464-428e-86c0-88297462d59b'
+Netlify Token: 'nfp_V4edtepFbhYPUh36xYTGdaa3tETXbcm3067e'
